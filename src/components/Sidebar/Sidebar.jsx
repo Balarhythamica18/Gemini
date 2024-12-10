@@ -180,7 +180,7 @@ const Sidebar = () => {
                 <FaEdit className="editbtnPrompt" />
                 Edit Prompt
               </h2>
-              <textarea
+              <textarea className="editText"
                 value={newPromptText}
                 onChange={handleEditChange}
                 rows="4"

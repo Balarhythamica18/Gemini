@@ -423,12 +423,14 @@ sidebar .bottom {
   background-color: #333;
   color: #fff;
 }
-
+.editText{
+  width:95%;
+}
 
 /* Mobile Responsiveness */
 @media (max-width: 600px) {
   .sidebar {
-    width: 100%; /* Full width for mobile */
+    width: 80%; /* Full width for mobile */
   }
 }
 /* Fade-In Animation */

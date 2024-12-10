@@ -106,7 +106,8 @@
  
   }
   textarea{
-    margin-bottom:-15px;
+    margin-bottom:12px;
+    padding:10px;
   }
   
   /* Keep icons aligned in the search box */
