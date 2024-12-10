@@ -359,7 +359,6 @@ sidebar .bottom {
   gap: 10px;
   cursor: pointer;
   color: inherit; /* Adjusts dynamically based on theme */
-  transition: color 0.3s ease;
 }
 
 .sidebar .bottom-item img {
