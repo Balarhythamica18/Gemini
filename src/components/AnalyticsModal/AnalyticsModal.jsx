@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext,useMemo } from "react";
 import { Context } from "../../context/context";
 import { assets } from "../../assets/assets";
 import "./AnalyticsModal.css";
@@ -6,7 +6,12 @@ import "./AnalyticsModal.css";
 const AnalyticsModal = ({ closeModal, theme }) => {
   const { prevPrompt } = useContext(Context);
 
-  const uniquePrompts = Array.from(new Set(prevPrompt)); // Ensure unique prompts
+  const uniquePrompts = useMemo(() => {
+    //console.log("Calculating unique prompts");
+    return Array.from(new Set(prevPrompt));
+  }, [prevPrompt]);
+  
+  
   const totalPrompts = prevPrompt.length;
 
   return (
