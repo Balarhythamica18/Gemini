@@ -275,10 +275,16 @@ i{color: #e67e22
   border-radius: 10px;
 }
 
+
+
+
 .save {
   background-color: #007bff;
   color: white;
   border: 1px solid #007bff;
+  position:relative;
+
+  top:15px;
 }
 
 .save:hover {
@@ -287,16 +293,6 @@ i{color: #e67e22
   border: 1px solid #6c9ccf;
 }
 
-.cancel {
-  background-color: red;
-  color: white;
-  border: 1px solid red;
-}
-
-.cancel:hover {
-  background-color: rgb(194, 65, 65);
-  border: 1px solid rgb(194, 65, 65);
-}
 
 /* Sidebar Bottom Item Styling */
 .sidebar .bottom {

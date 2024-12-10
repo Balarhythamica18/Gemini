@@ -190,12 +190,7 @@ const Sidebar = () => {
                 <button className="save" onClick={saveEdit}>
                   Save
                 </button>
-                <button
-                  className="cancel"
-                  onClick={() => setEditingPromptIndex(null)}
-                >
-                  Cancel
-                </button>
+                
               </div>
             </div>
           </div>

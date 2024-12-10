@@ -62,7 +62,7 @@
 .Gemini{
     color:#c3bfbf;
     position:relative;
-    left:2%;
+    left:5%;
    
 
 }
@@ -77,42 +77,46 @@
     padding:0px 20px;
     margin:auto;
 }
-textarea{
- border:none;
- outline:0;
- border-radius: 5px;
- background-color: #f0f4f9;
- width:100%;
- font-size: 14px;
- 
-}
-.search-box{
-    display:flex;
+.search-box {
+    display: flex;
     align-items: center;
     justify-content: space-between;
-    gap:20px;
-    background-color: #f0f4f9;
-    padding:10px 20px;
-    border-radius: 50px;
-}
-.search-box img{
-    width:24px;
-    cursor:pointer;
-
-}
-.search-box input{
-    flex:1;
-    background:transparent;
-    border:none;
-    outline:none;
-    padding:8px;
-    font-size:18px;
-}
-.search-box div{
-    display:flex;
+    gap: 12px;
+    background-color: #f7f8fc; /* Match ChatGPT style */
+    padding: 12px 16px;
+    border-radius: 25px; /* Fully rounded corners */
+    box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+  }
+  
+  .search-box img {
+    width: 20px;
+    cursor: pointer;
+  }
+  
+  .search-box input,
+  .search-box textarea {
+    flex: 1;
+    background: transparent;
+    border: none;
+    outline: none;
+    padding: 8px;
+    font-size: 16px; /* Same font size */
+    font-family: inherit; /* Use consistent font */
+    resize: none; /* Prevent textarea resizing */
+ 
+  }
+  textarea{
+    margin-bottom:-15px;
+  }
+  
+  /* Keep icons aligned in the search box */
+  .search-box div {
+    display: flex;
     align-items: center;
-    gap:15px;
-}
+    gap: 12px;
+  }
+  
+  
 .main .bottom-info{
     font-size: 13px;
     margin:15px auto;
