@@ -17,6 +17,18 @@ const Main = () => {
 
   const inputRef = useRef(null); // Ref to focus the input box
 
+  const handleSend = () => {
+    if (input.trim() === "") return; // Avoid sending empty prompts
+    onSent(); // Trigger the existing onSent logic
+    setInput(""); // Clear the input value
+  
+    // Reset the textarea height to its default
+    if (inputRef.current) {
+      inputRef.current.style.height = "auto";
+    }
+  };
+  
+
   useEffect(() => {
     // Event listener for global shortcuts
     const handleGlobalShortcuts = (e) => {
@@ -101,27 +113,28 @@ const Main = () => {
         <div className="main-bottom">
   <div className="search-box">
     <textarea
-      placeholder="Enter prompt here"
-      value={input}
-      onChange={(e) => setInput(e.target.value)}
-      ref={inputRef} // Attach ref to the textarea
-      rows="1" // Start with a single row
-      onInput={(e) => {
-        e.target.style.height = "auto"; // Reset height
-        e.target.style.height = `${e.target.scrollHeight}px`; // Adjust height dynamically
-      }}
-      style={{
-        resize: "none", // Prevent manual resizing
-        overflow: "hidden", // Hide scrollbars
-      }}
-    ></textarea>
+  placeholder="Enter prompt here"
+  value={input}
+  onChange={(e) => setInput(e.target.value)}
+  ref={inputRef} // Attach ref to the textarea
+  rows="1" // Start with a single row
+  onInput={(e) => {
+    e.target.style.height = "auto"; // Reset height before recalculating
+    e.target.style.height = `${e.target.scrollHeight}px`; // Adjust height dynamically
+  }}
+  style={{
+    resize: "none", // Prevent manual resizing
+    overflow: "hidden", // Hide scrollbars
+  }}
+></textarea>
+
     <div>
       <img src={assets.gallery_icon} alt="Gallery Icon" />
       <img src={assets.mic_icon} alt="Mic Icon" />
       <img
         src={assets.send_icon}
         alt="Send Icon"
-        onClick={() => onSent()}
+        onClick={handleSend}
       />
     </div>
   </div>
