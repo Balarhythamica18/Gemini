@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useContext } from "react";
-import { Context } from "../../context/context";  // Import the context
-import './Login.css';  // Assuming you have styles for both light and dark themes
+import { Context } from "../../context/context"; 
+import './Login.css';  
 
 function Login({ onLogin, closeLogin }) {
   const [username, setUsername] = useState("");
@@ -17,6 +17,8 @@ function Login({ onLogin, closeLogin }) {
       alert("Please enter a valid username and password");
     }
   };
+
+  const isButtonDisabled = !username.trim() || !password.trim(); 
 
   return (
     <div className={`login-overlay ${theme}`}>
@@ -46,7 +48,7 @@ function Login({ onLogin, closeLogin }) {
         <div className="login-buttons">
           <button
             onClick={handleLogin}
-            disabled={!username.trim() || !password.trim()}
+            disabled={isButtonDisabled}
             className="login-btn"
           >
             Log In

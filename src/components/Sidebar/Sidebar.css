@@ -493,6 +493,7 @@ sidebar .bottom {
 /* Delete button */
 .delete-btn {
   margin-top: 10px;
+  margin-left: 10px;
   align-self: flex-end;
   background: #e74c3c;
   color: #ffffff;
@@ -506,6 +507,22 @@ sidebar .bottom {
 .delete-btn:hover {
   background: #c0392b;
 }
+.cancel-delete-btn{
+  color:white;
+  background-color:#e74c3c ;
+  border:1px solid #e74c3c;
+}
+.confirm-delete-btn{
+  color:white;
+  border:1px solid #28a745;
+  background-color: #28a745;
+}
+.final-message{
+  font-size: 15px;
+  margin-bottom: 10px;
+}
+
+
 /* Mobile Responsiveness */
 @media (max-width: 600px) {
   .sidebar {

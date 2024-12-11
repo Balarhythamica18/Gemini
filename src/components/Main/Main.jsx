@@ -5,7 +5,6 @@ import { assets } from "../../assets/assets";
 import Login from "../Login/Login";
 
 const Main = () => {
-
   const [username, setUsername] = useState(""); // Stores the username
   const [isLoginVisible, setIsLoginVisible] = useState(false); // Controls Login visibility
 
@@ -14,14 +13,16 @@ const Main = () => {
     return username.charAt(0).toUpperCase(); // First letter of username
   };
 
-
   const handleLogin = (username) => {
     setUsername(username);
   };
 
-
   const closeLogin = () => {
     setIsLoginVisible(false); // Close the login form
+  };
+
+  const toggleLogin = () => {
+    setIsLoginVisible(!isLoginVisible); // Toggle login visibility when user icon is clicked
   };
 
   const {
@@ -47,7 +48,6 @@ const Main = () => {
       inputRef.current.style.height = "auto";
     }
   };
-  
 
   useEffect(() => {
     // Event listener for global shortcuts
@@ -78,12 +78,12 @@ const Main = () => {
       <div className="nav">
         <p className={`Gemini ${theme}`}>Gemini-ChatBot</p>
 
-
-         {/* User Icon */}
-          <div>
-          <div>
+        {/* User Icon */}
+        <div>
           {username ? (
-            <div className="user-icon">{getInitial()}</div> // Display first letter of username
+            <div className="user-icon" onClick={toggleLogin}>
+              {getInitial()} {/* Display first letter of username */}
+            </div>
           ) : (
             <button
               onClick={() => setIsLoginVisible(true)}
@@ -96,11 +96,8 @@ const Main = () => {
             <Login onLogin={handleLogin} closeLogin={closeLogin} />
           )}
         </div>
-     
-    </div>
-  
-
       </div>
+
       <div className="main-container">
         {!showResult ? (
           <>
@@ -132,7 +129,7 @@ const Main = () => {
         ) : (
           <div className="result">
             <div className="result-title">
-              <p className="prompt-user">{getInitial()? getInitial(): <img src={assets.user_icon}/>}</p>
+              <p className="prompt-user">{getInitial()? getInitial(): <img src={assets.user_icon} alt="User Icon" />}</p>
               <p>{recentPrompt}</p>
             </div>
             <div className="result-data">
@@ -152,37 +149,34 @@ const Main = () => {
             </div>
           </div>
         )}
+
         <div className="main-bottom">
-  <div className="search-box">
-    <textarea
-  placeholder="Enter prompt here"
-  value={input}
-  onChange={(e) => setInput(e.target.value)}
-  ref={inputRef} // Attach ref to the textarea
-  rows="1" // Start with a single row
-  onInput={(e) => {
-    e.target.style.height = "auto"; // Reset height before recalculating
-    e.target.style.height = `${e.target.scrollHeight}px`; // Adjust height dynamically
-  }}
-  style={{
-    resize: "none", 
-    overflow: "hidden", 
-  }}
-></textarea>
+          <div className="search-box">
+            <textarea
+              placeholder="Enter prompt here"
+              value={input}
+              onChange={(e) => setInput(e.target.value)}
+              ref={inputRef} // Attach ref to the textarea
+              rows="1" // Start with a single row
+              onInput={(e) => {
+                e.target.style.height = "auto"; // Reset height before recalculating
+                e.target.style.height = `${e.target.scrollHeight}px`; // Adjust height dynamically
+              }}
+              style={{
+                resize: "none",
+                overflow: "hidden",
+              }}
+            ></textarea>
 
-    <div>
-      
-      <img
-        src={assets.send_icon}
-        alt="Send Icon"
-        onClick={handleSend}
-      />
-    </div>
-
-   
-  </div>
-</div>
-
+            <div>
+              <img
+                src={assets.send_icon}
+                alt="Send Icon"
+                onClick={handleSend}
+              />
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );

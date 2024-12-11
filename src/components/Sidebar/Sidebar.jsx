@@ -12,13 +12,20 @@ const Sidebar = () => {
   const [editingPromptIndex, setEditingPromptIndex] = useState(null);
   const [newPromptText, setNewPromptText] = useState("");
   const [showActivityModal, setShowActivityModal] = useState(false);
+  const [showConfirmDelete, setShowConfirmDelete] = useState(false);
+
+  const handleDeleteAllPrompts = () => {
+    setShowConfirmDelete(true); // Show the confirmation modal
+  };
+
+
 
   const toggleSidebar = useCallback(() => {
     console.log("toggleSidebar executed.");
     setIsOpen((prevIsOpen) => !prevIsOpen);
   }, []);
 
- 
+
 
   const {
     onSent,
@@ -73,10 +80,10 @@ const Sidebar = () => {
     setNewPromptText("");
   };
   // Function to delete all prompts
-const deleteAllPrompts = useCallback(() => {
-  console.log("All prompts deleted.");
-  setPrevPrompt([]); // Clear the prevPrompt array
-}, [setPrevPrompt]);
+  const deleteAllPrompts = useCallback(() => {
+    console.log("All prompts deleted.");
+    setPrevPrompt([]); // Clear the prevPrompt array
+  }, [setPrevPrompt]);
 
 
   return (
@@ -183,13 +190,13 @@ const deleteAllPrompts = useCallback(() => {
                   <p className="activity-name">
                     Hello, <span className="name">{username}!</span>
                   </p>
-                  <p className="login-time">Today, You logged in at {loginTime}</p>
+                  <p className="login-time">You logged in Today {loginTime}</p>
                   <div className="history">
                     <p>Your Total Search count: {totalPrompts}</p>
                     <p>
                       Want to delete your search history?
 
-                      <button  onClick={deleteAllPrompts}className="delete-btn" > Delete</button>
+                      <button onClick={handleDeleteAllPrompts} className="delete-btn" > Delete</button>
                     </p>
                   </div>
                 </div>
@@ -208,6 +215,39 @@ const deleteAllPrompts = useCallback(() => {
             </div>
           </div>
         )}
+
+        {showConfirmDelete && (
+          <div className="modal-overlay">
+            <div className={`modal-content ${theme}`}>
+              <button
+                className="close-btn"
+                onClick={() => setShowConfirmDelete(false)} // Close the modal without deleting
+              >
+                &times;
+              </button>
+              <h3 className="final-message">Are you sure you want to delete all your prompts?</h3>
+              <div className="modal-actions">
+                <button
+                  className="confirm-delete-btn"
+                  onClick={() => {
+                    deleteAllPrompts(); // Delete prompts on confirmation
+                    setShowConfirmDelete(false); // Close the confirmation modal
+                  }}
+                >
+                  OK
+                </button>
+                <button
+                  className="cancel-delete-btn"
+                  onClick={() => setShowConfirmDelete(false)} // Close the modal without deleting
+                >
+                  Cancel
+                </button>
+              </div>
+            </div>
+          </div>
+        )}
+
+
 
 
         {/* Edit Modal */}
