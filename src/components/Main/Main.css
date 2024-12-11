@@ -273,9 +273,7 @@
   
   
 @media (max-width:600px){
-  .main-container{
-    margin-top:-40px;
-  }
+ 
   .main .greet span{
     font-size: 20px;
   }
