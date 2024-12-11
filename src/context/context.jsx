@@ -12,6 +12,10 @@ const ContextProvider = (props) => {
   const [resultData, setResultData] = useState("");
   const [theme, setTheme] = useState("light");
   const [showAnalytics, setShowAnalytics] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);  // To track login status
+  const [username, setUsername] = useState("");  // Username after login
+  const [loginTime, setLoginTime] = useState("");  // Time of login
+  
 
   const delayPara = (index, nextWord) => {
     setTimeout(() => {
@@ -86,6 +90,13 @@ const ContextProvider = (props) => {
     setShowAnalytics((prev) => !prev);
   };
 
+  const loginUser = (name) => {
+    setUsername(name);
+    setLoginTime(new Date().toLocaleTimeString());
+    setIsLoggedIn(true);
+
+  };
+
   const contextValue = {
     prevPrompt,
     setPrevPrompt,
@@ -102,6 +113,11 @@ const ContextProvider = (props) => {
     toggleTheme,
     showAnalytics,
     toggleAnalytics,
+    isLoggedIn,  // Provide login status
+    username,    // Provide username
+    loginTime,   // Provide login time
+    loginUser,   // Function to log the user in
+   
   };
 
   return (

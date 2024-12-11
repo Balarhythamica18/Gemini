@@ -62,7 +62,7 @@
 .Gemini{
     color:#c3bfbf;
     position:relative;
-    left:8%;
+    left:6%;
    
 
 }
@@ -164,6 +164,31 @@
     height:20px;
     animation:loader 3s infinite linear;
 }
+.prompt-user{
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background-color: #778ca3; /* Default color */
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  font-size: 20px;
+  transition: background-color 0.3s ease;
+}
+.login-button{
+  padding:10px 10px;
+  border-radius: 20%;
+  background-color: #a5b1c2;
+  border: 1px solid #a5b1c2;
+  color:#fff;
+  cursor:pointer;font-weight: bold;
+}
+.login-button:hover{
+  background-color:#d1d8e0 ;
+  border:1px solid #d1d8e0;
+}
 
   
 @keyframes loader {
@@ -248,6 +273,13 @@
   
   
 @media (max-width:600px){
+  .main-container{
+    margin-top:-90px;
+  }
+  .main .greet span{
+    font-size: 20px;
+  }
+    
     .main-bottom input{
         flex:none;
         width:150px;
@@ -261,4 +293,11 @@
     .search-box div{
        gap:5px; 
     }
+    .Gemini{
+      color:#c3bfbf;
+      position:relative;
+      left:8%;
+     
+  
+  }
 }

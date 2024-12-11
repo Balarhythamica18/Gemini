@@ -1,0 +1,190 @@
+
+
+/* Background overlay for the login component */
+/* Overlay for login modal */
+.login-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.5); /* Slightly darker transparent background */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  padding: 20px;
+}
+
+/* Login container box */
+.login-container {
+  background: #fff;
+  padding: 40px 50px;
+  border-radius: 12px;
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+  width: 400px;
+  text-align: center;
+  transition: transform 0.3s ease-in-out;
+  font-family: "Arial", sans-serif;
+}
+
+/* Header with gradient text */
+.login-header {
+  font-size: 28px;
+  font-weight: bold;
+  margin-bottom: 30px;
+  background: linear-gradient(90deg, #4b90ff, #ff5546);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Close button styling */
+.close-icon {
+  border: none;
+  background-color: #ff5546;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  position:relative;
+  
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.close-icon:hover {
+  background-color: #ff7766;
+}
+
+/* Input fields */
+.input-field {
+  width: 100%;
+  padding: 14px;
+  margin: 12px 0;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 16px;
+  box-sizing: border-box;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.input-field:focus {
+  border-color: #4b90ff;
+  outline: none;
+  box-shadow: 0 0 5px rgba(75, 144, 255, 0.5);
+}
+.login-buttons{
+  display: flex;
+  justify-content: space-around;
+  gap:10px;
+}
+
+/* Button styling */
+.login-buttons button {
+  padding: 10px 25px;
+  font-size: 16px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: transform 0.3s ease, background-color 0.3s ease;
+  background: linear-gradient(90deg, #4b90ff, #ff5546);
+  color: white;
+  width: 100%;
+  margin-top: 20px;
+  font-weight: bold;
+}
+
+.login-buttons button:disabled {
+  background: #ddd;
+  cursor: not-allowed;
+}
+
+.login-buttons button:hover {
+  transform: translateY(-2px);
+  background: linear-gradient(90deg, #3877d3, #e44a3a);
+}
+
+/* Additional text or links */
+.helper-text {
+  font-size: 14px;
+  color: #555;
+  margin-top: 15px;
+}
+
+.helper-text a {
+  color: #4b90ff;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.helper-text a:hover {
+  text-decoration: underline;
+}
+.user-icon {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background-color: #778ca3; /* Default color */
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  font-size: 20px;
+  margin: 20px auto;
+  transition: background-color 0.3s ease;
+}
+/* Light theme styles */
+.login-container.light {
+  background-color: white;
+  color: black;
+}
+
+.login-container.light .input-field {
+  background-color: #f0f0f0;
+}
+
+.login-container.light .login-btn {
+  background-color: lightblue;
+}
+
+/* Dark theme styles */
+.login-container.dark {
+  background-color: #333;
+  color: white;
+}
+
+.login-container.dark .input-field {
+  background-color: #555;
+  color:#ddd;
+}
+
+.login-container.dark .login-btn {
+  background-color: #444;
+}
+
+
+
+/* Responsiveness */
+@media (max-width: 480px) {
+  .login-container {
+    width: 90%;
+    padding: 30px 20px;
+  }
+
+  .login-header {
+    font-size: 24px;
+  }
+
+  .close-icon {
+    width: 25px;
+    height: 25px;
+    font-size: 14px;
+  }
+}
+
+
+

@@ -18,6 +18,8 @@ const Sidebar = () => {
     setIsOpen((prevIsOpen) => !prevIsOpen);
   }, []);
 
+ 
+
   const {
     onSent,
     prevPrompt,
@@ -26,8 +28,10 @@ const Sidebar = () => {
     toggleAnalytics,
     theme,
     toggleTheme,
-    setPrevPrompt,
+    setPrevPrompt, isLoggedIn, username, loginTime,
   } = useContext(Context);
+
+  const totalPrompts = prevPrompt.length;
 
   const loadPrompt = useCallback(
     async (prompt) => {
@@ -37,6 +41,10 @@ const Sidebar = () => {
     },
     [setRecentPrompt, onSent]
   );
+
+  const handleActivityClick = () => {
+    setShowActivityModal(true);
+  };
 
   const deletePrompt = useCallback(
     (index) => {
@@ -64,22 +72,28 @@ const Sidebar = () => {
     setEditingPromptIndex(null);
     setNewPromptText("");
   };
+  // Function to delete all prompts
+const deleteAllPrompts = useCallback(() => {
+  console.log("All prompts deleted.");
+  setPrevPrompt([]); // Clear the prevPrompt array
+}, [setPrevPrompt]);
+
 
   return (
     <div className={`sidebar-container ${theme}`}>
       {/* Constant Menu Icon */}
       <div className={`sidebar-container ${theme}`}>
-  {/* Constant Menu Icon */}
-  <div className={`menu-icon ${theme}`}>
-    <img
-      onClick={toggleSidebar}
-      className={`menu ${theme}`} // Add theme class here
-      title="menu"
-      src={ (theme === "dark" ? assets.menu_icon_light : assets.menu_icon_dark)}
-      alt="menu"
-    />
-  </div>
-</div>
+        {/* Constant Menu Icon */}
+        <div className={`menu-icon ${theme}`}>
+          <img
+            onClick={toggleSidebar}
+            className={`menu ${theme}`} // Add theme class here
+            title="menu"
+            src={(theme === "dark" ? assets.menu_icon_light : assets.menu_icon_dark)}
+            alt="menu"
+          />
+        </div>
+      </div>
 
 
       {/* Sidebar Component */}
@@ -89,57 +103,57 @@ const Sidebar = () => {
             <img onClick={newChat} src={assets.plus_icon} alt="new chat" />
             <p title="New Chat">New Chat</p>
           </div>
-          
-            <div className="recent">
-              <p className="recent-title">Recent</p>
-              {prevPrompt.map((item, index) => (
-                <div key={index} className="recent-entry">
-                  <img src={assets.message_icon} alt="message icon" />
-                  <div className="recent-entry-content">
-                    <p
-                      onClick={() => loadPrompt(item)}
-                      className="recent-entry-text"
+
+          <div className="recent">
+            <p className="recent-title">Recent</p>
+            {prevPrompt.map((item, index) => (
+              <div key={index} className="recent-entry">
+                <img src={assets.message_icon} alt="message icon" />
+                <div className="recent-entry-content">
+                  <p
+                    onClick={() => loadPrompt(item)}
+                    className="recent-entry-text"
+                  >
+                    {item.slice(0, 18)}...
+                  </p>
+                  <div className="recent-actions">
+                    <button title="edit" onClick={() => openEditModal(index)}>
+                      <FaEdit className="editbtn" />
+                    </button>
+                    <button
+                      title="delete"
+                      onClick={() => deletePrompt(index)}
                     >
-                      {item.slice(0, 18)}...
-                    </p>
-                    <div className="recent-actions">
-                      <button title="edit" onClick={() => openEditModal(index)}>
-                        <FaEdit className="editbtn" />
-                      </button>
-                      <button
-                        title="delete"
-                        onClick={() => deletePrompt(index)}
-                      >
-                        <FaTrash className="trash" />
-                      </button>
-                    </div>
+                      <FaTrash className="trash" />
+                    </button>
                   </div>
                 </div>
-              ))}
-            </div>
-          
+              </div>
+            ))}
+          </div>
+
         </div>
 
         {/* Bottom Section */}
         <div className="bottom">
           <div className="bottom-item recent-entry">
             <img src={assets.question_icon} alt="question icon" />
-            
-              <p>
-                <a
-                  href="https://aistudio.google.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Help
-                </a>
-              </p>
-            
+
+            <p>
+              <a
+                href="https://aistudio.google.com"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Help
+              </a>
+            </p>
+
           </div>
 
           <div
             className="bottom-item recent-entry"
-            onClick={() => setShowActivityModal(true)}
+            onClick={handleActivityClick}
           >
             <img src={assets.history_icon} alt="history icon" />
             <p>Activity</p>
@@ -149,7 +163,7 @@ const Sidebar = () => {
             onClick={() => setCurrentModal("settings")}
           >
             <img src={assets.setting_icon} alt="settings icon" />
-             <p>Settings</p>
+            <p>Settings</p>
           </div>
         </div>
 
@@ -163,17 +177,38 @@ const Sidebar = () => {
               >
                 &times;
               </button>
-              <h2 className="activity-modal-header">
-                <i className="fas fa-exclamation-triangle"></i>
-              </h2>
-              <p className="activity-message">
-                We noticed you are not logged in. As a result, your activity
-                data is not being stored. Please log in to access your activity
-                history and track your progress.
-              </p>
+
+              {isLoggedIn ? (
+                <div className="activity-details">
+                  <p className="activity-name">
+                    Hello, <span className="name">{username}!</span>
+                  </p>
+                  <p className="login-time">Today, You logged in at {loginTime}</p>
+                  <div className="history">
+                    <p>Your Total Search count: {totalPrompts}</p>
+                    <p>
+                      Want to delete your search history?
+
+                      <button  onClick={deleteAllPrompts}className="delete-btn" > Delete</button>
+                    </p>
+                  </div>
+                </div>
+
+
+              ) : (
+                <div>
+                  <i className="fas fa-exclamation-triangle"></i>
+                  <p className="activity-message">
+                    We noticed you are not logged in. As a result, your activity
+                    data is not being stored. Please log in to access your activity
+                    history and track your progress.
+                  </p>
+                </div>
+              )}
             </div>
           </div>
         )}
+
 
         {/* Edit Modal */}
         {editingPromptIndex !== null && (
@@ -199,7 +234,7 @@ const Sidebar = () => {
                 <button className="save" onClick={saveEdit}>
                   Save
                 </button>
-                
+
               </div>
             </div>
           </div>

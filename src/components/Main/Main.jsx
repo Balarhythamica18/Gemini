@@ -1,9 +1,29 @@
-import React, { useContext, useEffect, useRef } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import { Context } from "../../context/context";
 import "./Main.css";
 import { assets } from "../../assets/assets";
+import Login from "../Login/Login";
 
 const Main = () => {
+
+  const [username, setUsername] = useState(""); // Stores the username
+  const [isLoginVisible, setIsLoginVisible] = useState(false); // Controls Login visibility
+
+  const getInitial = () => {
+    if (!username) return ""; // Default initial
+    return username.charAt(0).toUpperCase(); // First letter of username
+  };
+
+
+  const handleLogin = (username) => {
+    setUsername(username);
+  };
+
+
+  const closeLogin = () => {
+    setIsLoginVisible(false); // Close the login form
+  };
+
   const {
     onSent,
     recentPrompt,
@@ -57,14 +77,36 @@ const Main = () => {
     <div className={`main ${theme}`}>
       <div className="nav">
         <p className={`Gemini ${theme}`}>Gemini-ChatBot</p>
-        <img src={assets.user_icon} alt="User Icon" />
+
+
+         {/* User Icon */}
+          <div>
+          <div>
+          {username ? (
+            <div className="user-icon">{getInitial()}</div> // Display first letter of username
+          ) : (
+            <button
+              onClick={() => setIsLoginVisible(true)}
+              className="login-button"
+            >
+              Login
+            </button>
+          )}
+          {isLoginVisible && (
+            <Login onLogin={handleLogin} closeLogin={closeLogin} />
+          )}
+        </div>
+     
+    </div>
+  
+
       </div>
       <div className="main-container">
         {!showResult ? (
           <>
             <div className="greet">
               <p>
-                <span>Hello, Team</span>
+                <span>{username ? `Hello, ${username}!` : "Hello, Team!"}</span>
               </p>
               <p>How can I help you today?</p>
             </div>
@@ -90,7 +132,7 @@ const Main = () => {
         ) : (
           <div className="result">
             <div className="result-title">
-              <img src={assets.user_icon} alt="User Icon" />
+              <p className="prompt-user">{getInitial()? getInitial(): <img src={assets.user_icon}/>}</p>
               <p>{recentPrompt}</p>
             </div>
             <div className="result-data">
@@ -123,20 +165,21 @@ const Main = () => {
     e.target.style.height = `${e.target.scrollHeight}px`; // Adjust height dynamically
   }}
   style={{
-    resize: "none", // Prevent manual resizing
-    overflow: "hidden", // Hide scrollbars
+    resize: "none", 
+    overflow: "hidden", 
   }}
 ></textarea>
 
     <div>
-      <img src={assets.gallery_icon} alt="Gallery Icon" />
-      <img src={assets.mic_icon} alt="Mic Icon" />
+      
       <img
         src={assets.send_icon}
         alt="Send Icon"
         onClick={handleSend}
       />
     </div>
+
+   
   </div>
 </div>
 
