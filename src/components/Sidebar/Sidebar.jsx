@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useCallback } from "react";
 import "./Sidebar.css";
 import { assets } from "../../assets/assets";
 import { Context } from "../../context/context";
@@ -13,9 +13,10 @@ const Sidebar = () => {
   const [newPromptText, setNewPromptText] = useState("");
   const [showActivityModal, setShowActivityModal] = useState(false);
 
-  const toggleSidebar = () => {
-    setIsOpen(!isOpen);
-  };
+  const toggleSidebar = useCallback(() => {
+    console.log("toggleSidebar executed.");
+    setIsOpen((prevIsOpen) => !prevIsOpen);
+  }, []);
 
   const {
     onSent,
@@ -28,15 +29,23 @@ const Sidebar = () => {
     setPrevPrompt,
   } = useContext(Context);
 
-  const loadPrompt = async (prompt) => {
-    setRecentPrompt(prompt);
-    await onSent(prompt);
-  };
+  const loadPrompt = useCallback(
+    async (prompt) => {
+      console.log("loadPrompt executed.");
+      setRecentPrompt(prompt);
+      await onSent(prompt);
+    },
+    [setRecentPrompt, onSent]
+  );
 
-  const deletePrompt = (index) => {
-    const updatedPrompts = prevPrompt.filter((_, i) => i !== index);
-    setPrevPrompt(updatedPrompts);
-  };
+  const deletePrompt = useCallback(
+    (index) => {
+      console.log("deletePrompt executed.");
+      const updatedPrompts = prevPrompt.filter((_, i) => i !== index);
+      setPrevPrompt(updatedPrompts);
+    },
+    [prevPrompt, setPrevPrompt]
+  );
 
   const openEditModal = (index) => {
     setEditingPromptIndex(index);
