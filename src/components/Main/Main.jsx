@@ -42,11 +42,16 @@ const Main = () => {
     if (input.trim() === "") return; // Avoid sending empty prompts
     onSent(); // Trigger the existing onSent logic
     setInput(""); // Clear the input value
-  
+
     // Reset the textarea height to its default
     if (inputRef.current) {
       inputRef.current.style.height = "auto";
     }
+  };
+
+  const handleCardClick = (text) => {
+    setInput(text); // Set the clicked card's text as input
+    handleSend(); // Trigger sending the input
   };
 
   useEffect(() => {
@@ -88,6 +93,7 @@ const Main = () => {
             <button
               onClick={() => setIsLoginVisible(true)}
               className="login-button"
+              title="login"
             >
               Login
             </button>
@@ -108,19 +114,39 @@ const Main = () => {
               <p>How can I help you today?</p>
             </div>
             <div className="cards">
-              <div className="card">
+              <div
+                className="card"
+                onClick={() =>
+                  handleCardClick("Suggest beautiful views to see on an upcoming road trip")
+                }
+              >
                 <p>Suggest beautiful views to see on an upcoming road trip</p>
                 <img src={assets.compass_icon} alt="Compass Icon" />
               </div>
-              <div className="card">
+              <div
+                className="card"
+                onClick={() =>
+                  handleCardClick("Briefly summarize this concept: urban planning")
+                }
+              >
                 <p>Briefly summarize this concept: urban planning</p>
                 <img src={assets.bulb_icon} alt="Bulb Icon" />
               </div>
-              <div className="card">
+              <div
+                className="card"
+                onClick={() =>
+                  handleCardClick("Brainstorm team bonding activities for our work retreat")
+                }
+              >
                 <p>Brainstorm team bonding activities for our work retreat</p>
                 <img src={assets.message_icon} alt="Message Icon" />
               </div>
-              <div className="card">
+              <div
+                className="card"
+                onClick={() =>
+                  handleCardClick("Improve the readability of the following code")
+                }
+              >
                 <p>Improve the readability of the following code</p>
                 <img src={assets.code_icon} alt="Code Icon" />
               </div>
@@ -129,7 +155,9 @@ const Main = () => {
         ) : (
           <div className="result">
             <div className="result-title">
-              <p className="prompt-user">{getInitial()? getInitial(): <img src={assets.user_icon} alt="User Icon" />}</p>
+              <p className="prompt-user">
+                {getInitial() ? getInitial() : <img src={assets.user_icon} alt="User Icon" />}
+              </p>
               <p>{recentPrompt}</p>
             </div>
             <div className="result-data">

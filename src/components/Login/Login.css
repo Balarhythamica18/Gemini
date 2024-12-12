@@ -12,6 +12,17 @@
   align-items: center;
   z-index: 1000;
   padding: 20px;
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+/* Fade-in animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 /* Login container box */
@@ -24,6 +35,20 @@
   text-align: center;
   transition: transform 0.3s ease-in-out;
   font-family: "Arial", sans-serif;
+  transform: scale(0.8);
+  animation: scaleUp 0.4s ease forwards;
+}
+
+/* Scale-up animation */
+@keyframes scaleUp {
+  from {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
 }
 
 /* Header with gradient text */
@@ -34,6 +59,20 @@
   background: linear-gradient(90deg, #4b90ff, #ff5546);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+  animation: gradientSlide 3s infinite;
+}
+
+/* Gradient animation */
+@keyframes gradientSlide {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }
 
 /* Close button styling */
@@ -42,9 +81,8 @@
   background-color: #ff5546;
   font-size: 16px;
   cursor: pointer;
-  transition: background-color 0.3s ease;
-  position:relative;
-  
+  transition: background-color 0.3s ease, transform 0.2s;
+  position: relative;
   border-radius: 50%;
   width: 30px;
   height: 30px;
@@ -55,6 +93,7 @@
 
 .close-icon:hover {
   background-color: #ff7766;
+  transform: rotate(90deg);
 }
 
 /* Input fields */
@@ -73,12 +112,26 @@
   border-color: #4b90ff;
   outline: none;
   box-shadow: 0 0 5px rgba(75, 144, 255, 0.5);
+  animation: pulse 1s infinite;
 }
 
-.login-buttons{
+/* Pulse animation */
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 5px rgba(75, 144, 255, 0.5);
+  }
+  50% {
+    box-shadow: 0 0 10px rgba(75, 144, 255, 0.8);
+  }
+  100% {
+    box-shadow: 0 0 5px rgba(75, 144, 255, 0.5);
+  }
+}
+
+.login-buttons {
   display: flex;
   justify-content: space-around;
-  gap:10px;
+  gap: 10px;
 }
 
 /* Button styling */
@@ -88,7 +141,7 @@
   border: none;
   border-radius: 8px;
   cursor: pointer;
-  transition: transform 0.3s ease, background-color 0.3s ease;
+  transition: transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
   background: linear-gradient(90deg, #4b90ff, #ff5546);
   color: white;
   width: 100%;
@@ -96,7 +149,6 @@
   font-weight: bold;
 }
 
-/* Disabled button styling */
 .login-buttons button:disabled {
   background: #ddd;
   cursor: not-allowed;
@@ -107,7 +159,7 @@
 .login-buttons button:hover {
   transform: translateY(-2px);
   background: linear-gradient(90deg, #3877d3, #e44a3a);
-  opacity: 1; /* Remove the opacity change when hovered if button is enabled */
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
 }
 
 /* Additional text or links */
@@ -115,17 +167,21 @@
   font-size: 14px;
   color: #555;
   margin-top: 15px;
+  animation: fadeIn 0.5s ease-in-out 0.2s;
 }
 
 .helper-text a {
   color: #4b90ff;
   text-decoration: none;
   font-weight: bold;
+  transition: color 0.3s;
 }
 
 .helper-text a:hover {
   text-decoration: underline;
+  color: #ff5546;
 }
+
 .user-icon {
   width: 30px;
   height: 30px;
@@ -138,8 +194,14 @@
   cursor: pointer;
   font-size: 20px;
   margin: 20px auto;
-  transition: background-color 0.3s ease;
+  transition: background-color 0.3s ease, transform 0.3s ease;
 }
+
+.user-icon:hover {
+  background-color: #4b90ff;
+  transform: scale(1.2);
+}
+
 /* Light theme styles */
 .login-container.light {
   background-color: white;
@@ -162,14 +224,12 @@
 
 .login-container.dark .input-field {
   background-color: #555;
-  color:#ddd;
+  color: #ddd;
 }
 
 .login-container.dark .login-btn {
   background-color: #444;
 }
-
-
 
 /* Responsiveness */
 @media (max-width: 480px) {

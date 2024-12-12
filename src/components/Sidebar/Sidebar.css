@@ -347,7 +347,7 @@ i{color: #e67e22
   height: 24px;
   margin-right: 10px;
 }
-sidebar .bottom {
+.sidebar .bottom {
   display: flex;
   flex-direction: column;
 }

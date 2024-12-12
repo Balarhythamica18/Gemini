@@ -89,8 +89,7 @@ const Sidebar = () => {
   return (
     <div className={`sidebar-container ${theme}`}>
       {/* Constant Menu Icon */}
-      <div className={`sidebar-container ${theme}`}>
-        {/* Constant Menu Icon */}
+     
         <div className={`menu-icon ${theme}`}>
           <img
             onClick={toggleSidebar}
@@ -100,7 +99,7 @@ const Sidebar = () => {
             alt="menu"
           />
         </div>
-      </div>
+      
 
 
       {/* Sidebar Component */}
