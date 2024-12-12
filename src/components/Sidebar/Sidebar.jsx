@@ -1,4 +1,4 @@
-import React, { useContext, useState, useCallback } from "react";
+import React, { useContext, useState, useCallback, useEffect } from "react";
 import "./Sidebar.css";
 import { assets } from "../../assets/assets";
 import { Context } from "../../context/context";
@@ -7,6 +7,8 @@ import { FaEdit, FaTrash } from "react-icons/fa";
 import { FaGears } from "react-icons/fa6";
 
 const Sidebar = () => {
+  const [count, setCount] = useState(5); // Countdown value
+  const [isOkEnabled, setIsOkEnabled] = useState(false); // State to enable/disable OK button
   const [isOpen, setIsOpen] = useState(false);
   const [currentModal, setCurrentModal] = useState(null);
   const [editingPromptIndex, setEditingPromptIndex] = useState(null);
@@ -85,21 +87,37 @@ const Sidebar = () => {
     setPrevPrompt([]); // Clear the prevPrompt array
   }, [setPrevPrompt]);
 
+  useEffect(() => {
+    let timer;
+    if (showConfirmDelete && count > 0) {
+      // Start the countdown when the confirmation modal opens
+      timer = setTimeout(() => setCount(count - 1), 1000);
+    } else if (count === 0) {
+      setIsOkEnabled(true); // Enable the OK button when countdown reaches 0
+    }
+
+    return () => clearTimeout(timer); // Cleanup timer
+  }, [count, showConfirmDelete]); // Only run the effect when count or showConfirmDelete changes
+
+  const resetCountdown = () => {
+    setCount(5); // Reset the countdown when the modal is closed or reset
+    setIsOkEnabled(false); // Disable the OK button
+  };
 
   return (
     <div className={`sidebar-container ${theme}`}>
       {/* Constant Menu Icon */}
-     
-        <div className={`menu-icon ${theme}`}>
-          <img
-            onClick={toggleSidebar}
-            className={`menu ${theme}`} // Add theme class here
-            title="menu"
-            src={(theme === "dark" ? assets.menu_icon_light : assets.menu_icon_dark)}
-            alt="menu"
-          />
-        </div>
-      
+
+      <div className={`menu-icon ${theme}`}>
+        <img
+          onClick={toggleSidebar}
+          className={`menu ${theme}`} // Add theme class here
+          title="menu"
+          src={(theme === "dark" ? assets.menu_icon_light : assets.menu_icon_dark)}
+          alt="menu"
+        />
+      </div>
+
 
 
       {/* Sidebar Component */}
@@ -215,36 +233,52 @@ const Sidebar = () => {
           </div>
         )}
 
-        {showConfirmDelete && (
-          <div className="modal-overlay">
-            <div className={`modal-content ${theme}`}>
-              <button
-                className="close-btn"
-                onClick={() => setShowConfirmDelete(false)} // Close the modal without deleting
-              >
-                &times;
-              </button>
-              <h3 className="final-message">Are you sure you want to delete all your prompts?</h3>
-              <div className="modal-actions">
-                <button
-                  className="confirm-delete-btn"
-                  onClick={() => {
-                    deleteAllPrompts(); // Delete prompts on confirmation
-                    setShowConfirmDelete(false); // Close the confirmation modal
-                  }}
-                >
-                  OK
-                </button>
-                <button
-                  className="cancel-delete-btn"
-                  onClick={() => setShowConfirmDelete(false)} // Close the modal without deleting
-                >
-                  Cancel
-                </button>
-              </div>
-            </div>
-          </div>
-        )}
+{/* Confirm Delete Modal */}
+{showConfirmDelete && (
+  <div className="modal-overlay">
+    <div className={`modal-content ${theme}`}>
+      <button
+        className="close-btn"
+        onClick={() => {
+          setShowConfirmDelete(false);
+          resetCountdown(); // Reset countdown when modal is closed
+        }} // Close the modal without deleting
+      >
+        &times;
+      </button>
+      <h3 className="final-message">
+        Are you sure you want to delete all your Search History?
+      </h3>
+      <div className="modal-actions">
+        <button
+          className="confirm-delete-btn"
+          onClick={() => {
+            if (isOkEnabled) {
+              deleteAllPrompts(); // Delete prompts on confirmation
+              setShowConfirmDelete(false); // Close the confirmation modal
+            }
+          }}
+          disabled={!isOkEnabled} // Disable button until countdown reaches 0
+          style={{
+            cursor: isOkEnabled ? "pointer" : "not-allowed",  // Change cursor style based on button state
+          }}
+        >
+          {isOkEnabled ? "OK" : `OK(${count})`} {/* Button text changes when countdown reaches 0 */}
+        </button>
+        <button
+          className="cancel-delete-btn"
+          onClick={() => {
+            setShowConfirmDelete(false);
+            resetCountdown(); // Reset countdown when cancel is clicked
+          }} // Close the modal without deleting
+        >
+          Cancel
+        </button>
+      </div>
+    </div>
+  </div>
+)}
+
 
 
 
