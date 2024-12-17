@@ -1,5 +1,5 @@
 import React, { createContext, useState } from "react";
-import runChat from "../config/gemini";
+import runChat from "../config/gemini";//api call imported from the gemini.js used to get a response from the api.
 
 export const Context = createContext();
 
@@ -33,7 +33,8 @@ const ContextProvider = (props) => {
     setInput("");
     setResultData("");
   };
-
+  
+  //convert any encoded html entities (like &lt) to their original characters. 
   const decodeHtmlEntities = (text) => {
     const textarea = document.createElement("textarea");
     textarea.innerHTML = text;
@@ -88,7 +89,7 @@ const ContextProvider = (props) => {
   // Toggle Analytics Modal
   const toggleAnalytics = () => {
     setShowAnalytics((prev) => !prev);
-  };
+  };                                                      
 
   const loginUser = (name) => {
     setUsername(name);

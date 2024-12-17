@@ -197,7 +197,7 @@ const Main = () => {
             ></textarea>
 
             <div>
-              <img
+              <img title="send"
                 src={assets.send_icon}
                 alt="Send Icon"
                 onClick={handleSend}

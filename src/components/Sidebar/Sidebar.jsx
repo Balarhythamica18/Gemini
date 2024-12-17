@@ -22,10 +22,12 @@ const Sidebar = () => {
 
 
 
-  const toggleSidebar = useCallback(() => {
-    console.log("toggleSidebar executed.");
-    setIsOpen((prevIsOpen) => !prevIsOpen);
-  }, []);
+   const toggleSidebar = useCallback(() => {
+     console.log("toggleSidebar executed.");
+     setIsOpen((prevIsOpen) => !prevIsOpen);
+   }, []);
+
+
 
 
 
@@ -55,14 +57,22 @@ const Sidebar = () => {
     setShowActivityModal(true);
   };
 
-  const deletePrompt = useCallback(
-    (index) => {
-      console.log("deletePrompt executed.");
-      const updatedPrompts = prevPrompt.filter((_, i) => i !== index);
-      setPrevPrompt(updatedPrompts);
-    },
-    [prevPrompt, setPrevPrompt]
-  );
+  
+
+  
+
+   const deletePrompt = useCallback(
+     (index) => {
+       console.log("deletePrompt executed.");
+       const updatedPrompts = prevPrompt.filter((_, i) => i !== index);
+       setPrevPrompt(updatedPrompts);
+     },
+     [prevPrompt, setPrevPrompt]
+   );
+
+ 
+
+
 
   const openEditModal = (index) => {
     setEditingPromptIndex(index);
@@ -72,6 +82,8 @@ const Sidebar = () => {
   const handleEditChange = (e) => {
     setNewPromptText(e.target.value);
   };
+
+ 
 
   const saveEdit = () => {
     const updatedPrompts = [...prevPrompt];
@@ -163,7 +175,7 @@ const Sidebar = () => {
           <div className="bottom-item recent-entry">
             <img src={assets.question_icon} alt="question icon" />
 
-            <p>
+            <p title="help">
               <a
                 href="https://aistudio.google.com"
                 target="_blank"
@@ -180,14 +192,14 @@ const Sidebar = () => {
             onClick={handleActivityClick}
           >
             <img src={assets.history_icon} alt="history icon" />
-            <p>Activity</p>
+            <p title="Activity">Activity</p>
           </div>
           <div
             className="bottom-item recent-entry"
             onClick={() => setCurrentModal("settings")}
           >
             <img src={assets.setting_icon} alt="settings icon" />
-            <p>Settings</p>
+            <p title="Settings">Settings</p>
           </div>
         </div>
 
@@ -260,7 +272,8 @@ const Sidebar = () => {
           }}
           disabled={!isOkEnabled} // Disable button until countdown reaches 0
           style={{
-            cursor: isOkEnabled ? "pointer" : "not-allowed",  // Change cursor style based on button state
+            cursor: isOkEnabled ? "pointer" : "not-allowed", 
+             // Change cursor style based on button state
           }}
         >
           {isOkEnabled ? "OK" : `OK(${count})`} {/* Button text changes when countdown reaches 0 */}
