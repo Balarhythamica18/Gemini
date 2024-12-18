@@ -9,7 +9,7 @@ import { FaGears } from "react-icons/fa6";
 const Sidebar = () => {
   const [count, setCount] = useState(5); // Countdown value
   const [isOkEnabled, setIsOkEnabled] = useState(false); // State to enable/disable OK button
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(true);
   const [currentModal, setCurrentModal] = useState(null);
   const [editingPromptIndex, setEditingPromptIndex] = useState(null);
   const [newPromptText, setNewPromptText] = useState("");
@@ -137,7 +137,7 @@ const Sidebar = () => {
         <div className="top">
           <div className="new-chat">
             <img onClick={newChat} src={assets.plus_icon} alt="new chat" />
-            <p title="New Chat">New Chat</p>
+            <p onClick={newChat} title="New Chat">New Chat</p>
           </div>
 
           <div className="recent">

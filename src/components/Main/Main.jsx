@@ -7,6 +7,7 @@ import Login from "../Login/Login";
 const Main = () => {
   const [username, setUsername] = useState(""); // Stores the username
   const [isLoginVisible, setIsLoginVisible] = useState(false); // Controls Login visibility
+  const [isCopied, setIsCopied] = useState(false); // State to track if code is copied
 
   const getInitial = () => {
     if (!username) return ""; // Default initial
@@ -54,6 +55,14 @@ const Main = () => {
     handleSend(); // Trigger sending the input
   };
 
+  const copyCode = () => {
+    const code = resultData.replace(/<\/?[^>]+(>|$)/g, ""); // Remove HTML tags
+    navigator.clipboard.writeText(code).then(() => {
+      setIsCopied(true); // Set copied state to true
+      setTimeout(() => setIsCopied(false), 2000); // Reset after 2 seconds
+    });
+  };
+
   useEffect(() => {
     // Event listener for global shortcuts
     const handleGlobalShortcuts = (e) => {
@@ -77,6 +86,9 @@ const Main = () => {
       document.removeEventListener("keydown", handleGlobalShortcuts);
     };
   }, [onSent]);
+
+  // Check if the result contains code (e.g., <code> tags)
+  const isCodeResult = resultData.includes("<code>");
 
   return (
     <div className={`main ${theme}`}>
@@ -160,8 +172,18 @@ const Main = () => {
               </p>
               <p>{recentPrompt}</p>
             </div>
+            {isCodeResult && (
+                <div className="copy-code-button">
+                  <button onClick={copyCode} className="copy-button">
+                    {isCopied ? "Copied!" : "Copy Code"}
+                  </button>
+                </div>
+              )}
             <div className="result-data">
               <img src={assets.gemini_icon} alt="Gemini Icon" />
+              <div className="language-header">
+              
+              </div>
               {loading ? (
                 <div className="loader">
                   <hr />
@@ -174,6 +196,8 @@ const Main = () => {
                   className="output-container"
                 />
               )}
+
+           
             </div>
           </div>
         )}
