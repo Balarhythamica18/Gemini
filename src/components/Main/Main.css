@@ -187,12 +187,27 @@ textarea {
 }
 
 .result-data {
+  position:relative;
   display: flex;
   align-items: start;
   gap: 20px;
   animation: fadeIn 1s ease-in-out;
 }
+.gemini-icon {
+  transition: transform 0.5s ease-in-out; /* Smooth transition for scale */
+  animation: scaleGemini 3s infinite alternate; /* Scaling animation */
+}
 
+
+
+@keyframes scaleGemini {
+  0% {
+    transform: scale(1); /* Initial scale */
+  }
+  100% {
+    transform: scale(1.2); /* Scale up */
+  }
+}
 .loader {
   width: 100%;
   display: flex;
