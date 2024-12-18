@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import Joyride from "react-joyride";
+import "./TourGuide.css"; // Include the custom CSS for styles and animations
 
 const TourGuide = () => {
   const [isTourActive, setIsTourActive] = useState(true);
 
   const steps = [
-    // Sidebar Steps
     {
       target: ".menu-icon", // Target the menu icon
       content: "This is the menu. Click here to toggle the sidebar.",
@@ -34,8 +34,6 @@ const TourGuide = () => {
       target: ".settings-options", // Target the settings modal
       content: "This is the settings panel. Toggle themes or view analytics.",
     },
-
-    // Main Component Steps
     {
       target: ".user-icon, .login-button", // Target the user icon or login button
       content: "Click here to log in or view your profile. Logged-in users will see their initials here.",
@@ -57,46 +55,22 @@ const TourGuide = () => {
       showSkipButton
       showBackButton
       showNextButton
-      showProgress={false} // Disable the progress indicator (Step 1 of 10)
       styles={{
         options: {
-          zIndex: 10000,
-          primaryColor: "#a5b1c2", 
-          textColor: "#333", // Dark text color for clarity
-          backgroundColor: "#f1f2f6", // White background for good contrast
-          arrowColor: "#a5b1c2", // Match arrow color with primary color
-          overlayColor: "rgba(0, 0, 0, 0.6)", // Dark overlay for focus
-          beaconColor: "#4CAF50", // Beacon color matches the theme
-          tooltipColor: "#FFFFFF", // Tooltip color for clarity
-          tooltipTextColor: "#333", // Tooltip text in dark color for readability
-          // Responsive styles
-          tooltipContainer: {
-            maxWidth: "90%", // Limit width for mobile screens
-            padding: "10px",
-            fontSize: "1rem",
-          },
-          beacon: {
-            width: "16px", // Adjust size for smaller screens
-            height: "16px",
-          },
+          zIndex: 10000, // Ensure Joyride elements stay on top
+          primaryColor: "#a5b1c2",
+          textColor: "#333",
+          backgroundColor: "#f1f2f6",
+          arrowColor: "#a5b1c2",
+          overlayColor: "rgba(0, 0, 0, 0.6)",
         },
-        // Responsive positioning adjustments
-        responsive: {
-          large: {
-            tooltip: {
-              fontSize: "1.1rem",
-            },
-          },
-          medium: {
-            tooltip: {
-              fontSize: "1rem",
-            },
-          },
-          small: {
-            tooltip: {
-              fontSize: "0.9rem",
-            },
-          },
+        beacon: {
+          width: "14px", // Adjust the beacon size
+          height: "14px",
+          position: "relative", // Position relative to avoid conflicts
+          marginLeft:"50%", // Adjust left margin for alignment
+          marginTop: "60%", // Center vertically
+          zIndex: 9999, // Ensure the beacon stays above other elements
         },
       }}
       run={isTourActive}
