@@ -4,6 +4,7 @@ import "./Main.css";
 import { assets } from "../../assets/assets";
 import Login from "../Login/Login";
 
+
 const Main = () => {
   const [username, setUsername] = useState(""); // Stores the username
   const [isLoginVisible, setIsLoginVisible] = useState(false); // Controls Login visibility
@@ -189,6 +190,7 @@ const Main = () => {
                   <hr />
                   <hr />
                   <hr />
+                  
                 </div>
               ) : (
                 <div
