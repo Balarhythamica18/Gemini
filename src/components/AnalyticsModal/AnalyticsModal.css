@@ -1,0 +1,127 @@
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  background-color: #ffffff; 
+  color: #212121; 
+  padding: 25px 30px; 
+  border-radius: 12px; 
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3); 
+  width: 90%;
+  max-width: 500px; 
+  text-align: center;
+  position: relative;
+  animation: fadeIn 0.3s ease; 
+}
+
+.close-btn {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: none;
+  border: none;
+  font-size: 20px;
+  color: #757575; /* Neutral color for close button */
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.close-btn:hover {
+  color: #333; /* Darker shade on hover */
+}
+
+.header {
+  font-size: 25px;
+  color: #c4c7c5;
+  font-weight: 500;
+  padding: 20px;
+  background: linear-gradient(90deg, #4b90ff, #ff5546); /* Gradient text */
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.back-btn {
+  background-color: #555;
+  display: flex;
+  border-radius: 5px;
+}
+
+.analytics-data {
+  text-align: left;
+  font-size: 16px;
+  margin: 20px 0;
+  padding: 20px;
+  background-color: #fafafa; /* Subtle light background */
+  border: 1px solid #e0e0e0; /* Clean border for separation */
+  border-radius: 8px; /* Modern rounded corners */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Light elevation */
+}
+
+.analytics-data p {
+  margin: 5px 0;
+  color: #555; /* Muted text for details */
+}
+
+.unique-prompts {
+  list-style-type: none;
+  padding: 10px;
+  margin: 15px 0;
+  max-height: 250px; /* Scrollable for large data */
+  overflow-y: auto;
+  border: 1px solid #dcdcdc; /* Subtle separator */
+  border-radius: 8px;
+  background: #ffffff; /* Clean background */
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.05); /* Inset shadow */
+}
+
+.unique-prompts li {
+  padding: 10px 15px;
+  border-bottom: 1px solid #e6e6e6; /* Clean separators */
+  display: flex;
+  align-items: center; /* Align bullet and text */
+  font-size: 14px;
+  color: #444; /* Neutral text */
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.unique-prompts li:hover {
+  background-color: #f5f5f5; /* Subtle hover effect */
+  transform: translateY(-1px); /* Slight lift */
+}
+
+.unique-prompts li:last-child {
+  border-bottom: none; /* Remove last item border */
+}
+
+.unique-prompts li::before {
+  content: "•"; /* Custom bullet */
+  color: #007bff; /* Highlighted bullet color */
+  font-size: 18px;
+  margin-right: 10px;
+}
+
+.close-modal-btn {
+  padding: 12px 20px;
+  background-color: #003f7f; /* Consistent with theme */
+  border-radius: 6px;
+  color: white;
+  border: none;
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.close-modal-btn:hover {
+  background-color: #0056b3; /* Subtle hover effect */
+}

@@ -1,0 +1,239 @@
+/* Overlay for login modal */
+.login-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.5); /* Subtle background for focus */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  padding: 20px;
+  animation: fadeIn 0.4s ease-in-out;
+}
+
+/* Fade-in animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Login container styling */
+.login-container {
+  background: #fff;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  width: 360px;
+  text-align: center;
+  font-family: "Arial", sans-serif;
+  animation: scaleUp 0.4s ease-in-out;
+  position:relative;
+}
+
+/* Scale-up animation */
+@keyframes scaleUp {
+  from {
+    transform: scale(0.85);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* Header with gradient text and icon */
+.login-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 20px;
+  background: linear-gradient(90deg, #4b90ff, #ff5546);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: gradientSlide 3s infinite;
+}
+
+/* Gradient animation */
+@keyframes gradientSlide {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.login-icon {
+  margin-right: 8px;
+  font-size: 1.5rem;
+  color: inherit;
+}
+
+/* Input field styling */
+.input-field {
+  width: 100%;
+  padding: 12px;
+  margin: 12px 0;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 14px;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  box-sizing: border-box;
+}
+
+.input-field:focus {
+  border-color: #4b90ff;
+  outline: none;
+  box-shadow: 0 0 6px rgba(75, 144, 255, 0.4);
+}
+
+/* Button container */
+.login-buttons {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* Button styles */
+.login-btn,
+.toggle-btn {
+  padding: 10px;
+  font-size: 14px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.3s, transform 0.2s ease-in-out;
+ 
+}
+
+.login-btn {
+  background: linear-gradient(90deg, #4b90ff, #ff5546);
+  color: white;
+}
+
+.login-btn:hover {
+  background: linear-gradient(90deg, #3877d3, #e44a3a);
+  transform: translateY(-2px);
+}
+
+.login-btn:disabled {
+  background: #ccc;
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+.toggle-btn {
+  background: transparent;
+  background: -webkit-linear-gradient(16deg, #4b90ff, #ff5546);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-size: 12px;
+}
+
+.toggle-btn:hover {
+  text-decoration: underline;
+}
+
+
+/* Helper text for toggling */
+.helper-text {
+  font-size: 14px;
+  margin-top: 10px;
+}
+
+.helper-text a {
+  color: #4b90ff;
+  text-decoration: none;
+}
+
+.helper-text a:hover {
+  text-decoration: underline;
+  color: #ff5546;
+}
+.user-icon {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background-color: #778ca3; /* Default color */
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  font-size: 20px;
+  margin: 20px auto;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.user-icon:hover {
+  background-color: #4b90ff;
+  transform: scale(1.2);
+}
+
+/* Responsive design */
+@media (max-width: 480px) {
+  .login-container {
+    width: 90%;
+    padding: 20px;
+  }
+
+  .login-header {
+    font-size: 1.2rem;
+  }
+
+  .input-field {
+    font-size: 12px;
+    padding: 10px;
+  }
+
+  .login-btn,
+  .close-btn,
+  .toggle-btn {
+    font-size: 12px;
+    padding: 8px;
+  }
+}
+
+/* Theme variations */
+.login-container.light {
+  background: #f9f9f9;
+  color: #333;
+}
+
+.login-container.light .input-field {
+  background: #fff;
+  border-color: #ddd;
+}
+
+.login-container.light .login-btn {
+  background: #4b90ff;
+}
+
+.login-container.dark {
+  background: #2a2a2a;
+  color: #fff;
+}
+
+.login-container.dark .input-field {
+  background: #444;
+  color: #ddd;
+}
+
+.login-container.dark .login-btn {
+  background: #555;
+}

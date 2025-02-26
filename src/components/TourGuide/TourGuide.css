@@ -1,0 +1,58 @@
+@keyframes pulse-animation {
+    0% {
+      transform: scale(1);
+      opacity: 1;
+    }
+    50% {
+      transform: scale(1.5);
+      opacity: 0.5;
+    }
+    100% {
+      transform: scale(2);
+      opacity: 0;
+    }
+  }
+  
+  .joyride-beacon__outer {
+    animation: pulse-animation 1.2s ease-in-out infinite;
+    background-color: rgba(76, 175, 80, 0.2); /* Semi-transparent green */
+    border-radius: 50%;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+  }
+  
+  .joyride-beacon__inner {
+    animation: pulse-animation 1.2s ease-in-out infinite;
+    background-color: #4caf50; /* Solid green */
+    border-radius: 50%;
+    width: 50%;
+    height: 50%;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+  }
+  /* Responsive Styles */
+@media screen and (max-width: 768px) {
+  .joyride-tooltip {
+    max-width: 95vw; /* Increase width for smaller screens */
+    font-size: 12px; /* Further reduce font size */
+  }
+
+  .joyride-tooltip__title {
+    font-size: 14px; /* Reduce title font size */
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .joyride-tooltip {
+    max-width: 100vw; /* Full width on very small screens */
+    font-size: 10px; /* Smallest font size for readability */
+  }
+
+  .joyride-beacon {
+    width: 10px; /* Adjust beacon size */
+    height: 10px;
+  }
+}
+  

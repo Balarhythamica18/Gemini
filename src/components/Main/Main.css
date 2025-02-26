@@ -1,0 +1,578 @@
+.main {
+  flex: 1;
+  min-height: 100vh;
+  padding-bottom: 15vh;
+  position: relative;
+  animation: fadeIn 1s ease-in-out;
+}
+
+.main .nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 22px;
+  padding: 20px;
+  color: #585858;
+  animation: slideInFromTop 0.8s ease-in-out;
+}
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.main .nav img {
+  width: 40px;
+  border-radius: 50px;
+  transition: transform 0.3s ease;
+}
+
+.main .nav img:hover {
+  transform: scale(1.2);
+}
+
+.main-container {
+  max-width: 900px;
+  margin: auto;
+}
+
+.main .greet {
+  margin: 50px 0px;
+  font-size: 56px;
+  color: #c4c7c5;
+  font-weight: 500;
+  padding: 20px;
+  animation: fadeInUp 1.2s ease-in-out;
+}
+
+.main .greet span {
+  background: -webkit-linear-gradient(16deg, #4b90ff, #ff5546);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: gradientAnimation 3s infinite alternate;
+}
+
+.main .cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 15px;
+  padding: 20px;
+}
+
+.main .card {
+  height: 200px;
+  padding: 15px;
+  background-color: #f0f4f9;
+  border-radius: 10px;
+  position: relative;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.main .card:hover {
+  background-color: #dfe4ea;
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.main .card img {
+  width: 35px;
+  padding: 5px;
+  position: absolute;
+  background-color: white;
+  border-radius: 20px;
+  bottom: 10px;
+  right: 10px;
+  transition: transform 0.3s ease;
+}
+
+.main .card img:hover {
+  transform: rotate(20deg) scale(1.2);
+}
+
+.main .card p {
+  color: #585858;
+  font-size: 17px;
+  animation: fadeIn 1s ease-in-out;
+}
+
+.Gemini {
+  color: #c3bfbf;
+  position: relative;
+  left: 6%;
+}
+
+.main-bottom {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  max-width: 900px;
+  padding: 0px 20px;
+  margin: auto;
+  animation: slideInFromBottom 0.8s ease-in-out;
+}
+
+.search-box {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  background-color: #f7f8fc;
+  padding: 12px 16px;
+  border-radius: 25px;
+  box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.1);
+  animation: fadeIn 1.2s ease-in-out;
+}
+
+.search-box img {
+  width: 20px;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.search-box img:hover {
+  transform: scale(1.2);
+}
+
+.search-box input,
+.search-box textarea {
+  flex: 1;
+  background: transparent;
+  border: none;
+  outline: none;
+  padding: 8px;
+  font-size: 16px;
+  font-family: inherit;
+  resize: none;
+}
+
+textarea {
+  margin-bottom: 12px;
+  padding: 10px;
+}
+
+.search-box div {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.main .bottom-info {
+  font-size: 13px;
+  margin: 15px auto;
+  text-align: center;
+  font-weight: 300;
+}
+
+.result {
+  padding: 0px 5%;
+  max-height: 70vh;
+  overflow-y: scroll;
+}
+
+.result::-webkit-scrollbar {
+  display: none;
+}
+
+.result-title {
+  margin: 40px 0px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.result img {
+  width: 40px;
+  border-radius: 50%;
+  transition: transform 0.3s ease;
+}
+
+.result img:hover {
+  transform: scale(1.2);
+}
+
+.result-data {
+  position:relative;
+  display: flex;
+  align-items: start;
+  gap: 20px;
+  animation: fadeIn 1s ease-in-out;
+}
+.gemini-icon {
+  transition: transform 0.5s ease-in-out; /* Smooth transition for scale */
+  animation: scaleGemini 3s infinite alternate; /* Scaling animation */
+}
+/* About container overlay styling */
+.about-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.5); /* Subtle background for focus */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999; /* High z-index to appear above all elements */
+}
+
+/* Styling for the About content */
+.about-content {
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  max-width: 600px;
+  text-align: center;
+  overflow-y: auto;
+  
+}
+.about-content button{
+  padding:5px;
+  border:1px solid #f53b57;
+  background-color: #f53b57;
+  color:white;
+  border-radius:20%;
+  cursor:pointer;
+  }
+  
+  .about-content button:hover{
+    background-color: #ef5777;
+  }
+  
+.abt{
+  display: flex;
+  gap:10px;
+}
+
+
+
+@keyframes scaleGemini {
+  0% {
+    transform: scale(1); /* Initial scale */
+  }
+  100% {
+    transform: scale(1.2); /* Scale up */
+  }
+}
+.loader {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.loader hr {
+  border-radius: 4px;
+  border: none;
+  background-color: #f6f7f8;
+  background: linear-gradient(to right, #9ed7ff, #ffffff, #9ed7ff);
+  background-size: 800px 50px;
+  height: 20px;
+  animation: loader 3s infinite linear;
+}
+
+.prompt-user {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background-color: #778ca3;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  font-size: 20px;
+  transition: background-color 0.3s ease;
+}
+
+.prompt-user:hover {
+  background-color: #4b90ff;
+}
+
+.login-button, .about-button {
+  padding: 10px 10px;
+  border-radius: 20%;
+  background-color: #a5b1c2;
+  border: 1px solid #a5b1c2;
+  color: #fff;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+.login-button:hover, .about-button:hover {
+  background-color: #d1d8e0;
+  border: 1px solid #d1d8e0;
+}
+
+.result-data p {
+  font-size: 17px;
+  font-weight: 300;
+  line-height: 1.8;
+}
+.output-container {
+  font-family: "Fira Code", "Courier New", monospace;
+  line-height: 1.6;
+  background-color: #2f353d;
+  color: #e1e8f0;
+  padding: 24px;
+  border-radius: 14px;
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+  overflow-x: auto;
+  margin: 18px 0;
+  word-break: break-word;
+  font-size: 16px;
+  animation: fadeIn 1s ease-in-out;
+}
+
+pre {
+  background-color: #282f37;
+  padding: 20px;
+  border-radius: 12px;
+  overflow-x: auto;
+  margin: 0;
+  color: #e1e8f0;
+}
+
+code {
+  font-family: "Fira Code", "Courier New", monospace;
+  color: #f78c6c;
+  font-size: 14px;
+  white-space: pre-wrap;
+}
+
+.output-container pre {
+  border-left: 6px solid #f78c6c;
+}
+
+.output-container::-webkit-scrollbar {
+  width: 12px;
+  height: 12px;
+}
+
+.output-container::-webkit-scrollbar-thumb {
+  background: #444;
+  border-radius: 12px;
+}
+
+.output-container::-webkit-scrollbar-thumb:hover {
+  background: #333;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+.about-content.dark{
+  background: linear-gradient(145deg, #1a1a1a, #333333);
+}
+
+
+.main.light {
+  background-color: #ffffff;
+  color: #000000;
+}
+
+.main.dark {
+  background-color: #2d2d2d;
+  color: #ffffff;
+}
+
+@keyframes loader {
+  0% {
+      background-position: -800px 0px;
+  }
+  100% {
+      background-position: 800px 0px;
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+      opacity: 0;
+  }
+  100% {
+      opacity: 1;
+  }
+}
+
+@keyframes fadeInUp {
+  0% {
+      opacity: 0;
+      transform: translateY(20px);
+  }
+  100% {
+      opacity: 1;
+      transform: translateY(0);
+  }
+}
+
+@keyframes slideInFromTop {
+  0% {
+      transform: translateY(-100px);
+      opacity: 0;
+  }
+  100% {
+      transform: translateY(0);
+      opacity: 1;
+  }
+}
+
+@keyframes slideInFromBottom {
+  0% {
+      transform: translateY(100px);
+      opacity: 0;
+  }
+  100% {
+      transform: translateY(0);
+      opacity: 1;
+  }
+}
+
+@keyframes gradientAnimation {
+  0% {
+      background-position: 0% 50%;
+  }
+  100% {
+      background-position: 100% 50%;
+  }
+}
+/* Main.css */
+
+/* Button container for alignment */
+.copy-code-button {
+  text-align: right;
+  margin-top: 10px;
+}
+
+/* Copy Code Button */
+.copy-button {
+
+  padding: 10px 20px; /* Slightly larger button */
+  font-size: 14px;
+  background-color: #4CAF50; /* Initial green background */
+  color: white;
+  border: none;
+  border-radius: 6px; /* Slightly more rounded edges */
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+  will-change: transform, background-color, box-shadow;
+}
+
+/* Hover state */
+.copy-button:hover {
+  background-color: #45a049; /* Darker green on hover */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Light shadow for hover effect */
+  transform: translateY(-2px); /* Slight lift effect */
+}
+
+/* Focus state (when button is focused) */
+.copy-button:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px #3e8e41; /* Green focus outline */
+}
+
+/* Disabled state */
+.copy-button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+/* Active state (when button is clicked) */
+.copy-button:active {
+  background-color: #3e8e41; /* Darker green when clicked */
+  transform: scale(0.98); /* Slight shrinking effect */
+  box-shadow: none; /* Remove shadow during click */
+}
+
+/* Transition for active state */
+.copy-button {
+  transition: all 0.3s ease; /* Smooth transition for all states */
+}
+
+/* Transition for when the button shows "Copied!" */
+.copy-button.copied {
+  background-color: #6c757d; /* Grey color after copied */
+  transform: scale(1.05); /* Slight grow effect when code is copied */
+  animation: bounce 0.3s ease-in-out; /* Add a bouncing effect */
+}
+
+/* Bouncing animation */
+@keyframes bounce {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.copy-button {
+  transition: all 0.3s ease;
+}
+
+.copy-button:active {
+  transform: scale(0.98); /* Slight shrinking effect */
+}
+
+
+@media (max-width: 600px) {
+  .main .greet span {
+      font-size: 20px;
+  }
+
+  .main-bottom input {
+      flex: none;
+      width: 150px;
+  }
+
+  .main-bottom img {
+      width: 20px;
+  }
+
+  .search-box {
+      padding: 5px 10px;
+  }
+
+  .search-box div {
+      gap: 5px;
+  }
+
+  .Gemini {
+      color: #c3bfbf;
+      position: relative;
+      left: 8%;
+      font-size: 10px;
+  
+    }
+    .copy-button {
+      font-size: 9px; /* Smaller font size */
+      padding: 8px 8px; /* Adjust padding for small screens */
+      margin-right:-250px;
+    }
+  
+    .copy-code-button {
+      text-align: center; /* Center the button on small screens */
+    }
+    .about-content {
+      background-color: white;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      max-width: 300px;
+      text-align: center;
+      overflow-y: auto;
+      margin-top: -20%;
+      
+    }
+  }
