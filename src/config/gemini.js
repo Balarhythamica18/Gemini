@@ -1,51 +1,69 @@
-import { GoogleGenerativeAI, HarmBlockThreshold, HarmCategory} from "@google/generative-ai"
+import {
+  GoogleGenerativeAI,
+  HarmBlockThreshold,
+  HarmCategory,
+} from "@google/generative-ai";
+
+
+
+const API_KEY = import.meta.env.VITE_GEMINI_API_KEY;
 
 const MODEL_NAME = "gemini-2.0-flash";
-const API_KEY = "AIzaSyC4GfZ2jcTuMJMW-mo_fPeJU6mQXnDINns";
 
-async function runChat(prompt){
- const genAI = new GoogleGenerativeAI(API_KEY);
- const model = genAI.getGenerativeModel({model: MODEL_NAME});
+async function runChat(prompt) {
+  try {
+    const genAI = new GoogleGenerativeAI(API_KEY);
 
+    const model = genAI.getGenerativeModel({
+      model: MODEL_NAME,
+    });
 
-const generationConfig = {
- temperature: 1,
- topP: 0.95,
- topK: 40,
- maxOutputTokens: 8192,
- responseMimeType: "text/plain",
-};
-const safetySettings = [
-    {
-      category: HarmCategory.HARM_CATEGORY_HARASSMENT,
-      threshold: HarmBlockThreshold.BLOCK_MEDIUM_AND_ABOVE,
-    },
-    {
-      category: HarmCategory.HARM_CATEGORY_HATE_SPEECH,
-      threshold: HarmBlockThreshold.BLOCK_MEDIUM_AND_ABOVE,
-    },
-    {
-      category: HarmCategory.HARM_CATEGORY_SEXUALLY_EXPLICIT,
-      threshold: HarmBlockThreshold.BLOCK_MEDIUM_AND_ABOVE,
-    },
-    {
-      category: HarmCategory.HARM_CATEGORY_DANGEROUS_CONTENT,
-      threshold: HarmBlockThreshold.BLOCK_MEDIUM_AND_ABOVE,
-    },
-  ];
-  
+    const generationConfig = {
+      temperature: 1,
+      topP: 0.95,
+      topK: 40,
+      maxOutputTokens: 8192,
+      responseMimeType: "text/plain",
+    };
 
-  const chat = model.startChat({
-    generationConfig,
-    safetySettings, // Correct spelling here
-    history: [],
-  });
-  
+    const safetySettings = [
+      {
+        category: HarmCategory.HARM_CATEGORY_HARASSMENT,
+        threshold: HarmBlockThreshold.BLOCK_MEDIUM_AND_ABOVE,
+      },
+      {
+        category: HarmCategory.HARM_CATEGORY_HATE_SPEECH,
+        threshold: HarmBlockThreshold.BLOCK_MEDIUM_AND_ABOVE,
+      },
+      {
+        category: HarmCategory.HARM_CATEGORY_SEXUALLY_EXPLICIT,
+        threshold: HarmBlockThreshold.BLOCK_MEDIUM_AND_ABOVE,
+      },
+      {
+        category: HarmCategory.HARM_CATEGORY_DANGEROUS_CONTENT,
+        threshold: HarmBlockThreshold.BLOCK_MEDIUM_AND_ABOVE,
+      },
+    ];
 
-const result = await chat.sendMessage(prompt);
-const response = result.response;
-console.log(response.text());
-return  response.text()
-} 
+    const chat = model.startChat({
+      generationConfig,
+      safetySettings,
+      history: [],
+    });
+
+    const result = await chat.sendMessage(prompt);
+
+    const response = result.response;
+
+    console.log(response.text());
+
+    return response.text();
+
+  } catch (error) {
+    console.error("Gemini Error:", error);
+
+    return "Something went wrong!";
+  }
+}
 
 export default runChat;
